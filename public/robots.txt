@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Disallow admin and private routes
+Disallow: /admin
+Disallow: /login
+
+Sitemap: https://billfordadvertising.com/sitemap.xml

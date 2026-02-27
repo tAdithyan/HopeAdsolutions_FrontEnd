@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Prevent horizontal overflow */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  background-color: #EBEBEB;
+}
+
+/* Ensure all containers are full width */
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Smooth Transitions for All Text Elements */
+* {
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Specific text element transitions */
+h1, h2, h3, h4, h5, h6, p, span, a, button, label, input, textarea, select {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hover transitions for interactive elements */
+button:hover, a:hover, input:hover, select:hover, textarea:hover {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Seamless Marquee Animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+/* Faster version */
+.animate-marquee-fast {
+  animation: marquee 10s linear infinite;
+}
+
+/* Slower version */
+.animate-marquee-slow {
+  animation: marquee 30s linear infinite;
+}
+/* Change selected option background */
+select option {
+  background-color: white;
+  color: #FF8A00;
+}
+
+/* Hover only */
+select option:hover {
+  background-color: #FF8A00;
+  color: #ffffff;
+}
