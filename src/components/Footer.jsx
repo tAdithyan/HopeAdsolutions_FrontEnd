@@ -27,7 +27,7 @@ export function Footer() {
               </h3>
             </div>
             <p className="text-gray-600 text-sm leading-relaxed mb-6">
-              our mission is crafted with passion, precision, and a touch of digital magic. We transform everyday bus journeys into high-impact advertising opportunities with our eye-level 24-inch and 32-inch LED screens.
+              our mission is crafted with passion, precision, and a touch of digital magic. We transform everyday bus journeys into high-impact advertising opportunities with our eye-level LED screens.
             </p>
 
             {/* Social Media */}
@@ -101,24 +101,21 @@ export function Footer() {
               <div className="flex items-start gap-3">
                 <MapPin size={18} className="text-orange-400 mt-1 flex-shrink-0" />
                 <div>
-                  <p className="text-gray-600 text-sm">
-                    123 Business District<br />
-                    Thrissur, Kerala 680001
-                  </p>
+                  <p className="text-gray-600 text-sm"> Tint Productions <br /> Naranipuzha P O, Malappuram <br /> 679574<br /> Kerala </p>
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
                 <Phone size={18} className="text-orange-400 flex-shrink-0" />
-                <a href="tel:+919876543210" className="text-gray-600 hover:text-orange-400 transition-colors text-sm">
-                  +91 98765 43210
+                <a href="tel:+917510957477" className="text-gray-600 hover:text-orange-400 transition-colors text-sm">
+                  +91 7510957477
                 </a>
               </div>
 
               <div className="flex items-center gap-3">
                 <Mail size={18} className="text-orange-400 flex-shrink-0" />
-                <a href="mailto:hello@billboard.in" className="text-gray-600 hover:text-orange-400 transition-colors text-sm">
-                  hello@billboard.in
+                <a href="mailto:hopeadsolutions@gmail.com" className="text-gray-600 hover:text-orange-400 transition-colors text-sm">
+                  hopeadsolutions@gmail.com
                 </a>
               </div>
             </div>

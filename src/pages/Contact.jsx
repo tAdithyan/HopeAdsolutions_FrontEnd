@@ -9,7 +9,7 @@ const ContactPage = () => {
         <div>
             <SEO
                 title="Contact Us"
-                description="Get in touch with Billford Advertising for your next big project. We offer customized advertising solutions to meet your business needs."
+                description="Get in touch with Hopeadsolutions Advertising for your next big project. We offer customized advertising solutions to meet your business needs."
                 keywords="contact us, advertise with us, advertising inquiry, business consultation"
                 ogType="website"
             />

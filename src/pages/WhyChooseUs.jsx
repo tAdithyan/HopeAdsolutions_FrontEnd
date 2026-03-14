@@ -18,7 +18,7 @@ const features = [
         icon: TruckIcon,
         title: "Premium Transit Advertising",
         description:
-            "Reach thousands of commuters daily through our high-definition 24-inch and 32-inch LED screens placed inside buses.",
+            "Reach thousands of commuters daily through our high-definition  LED screens placed inside buses.",
     },
     {
         icon: EyeIcon,
@@ -65,8 +65,8 @@ const WhyChooseUsPage = () => {
         <div className="min-h-screen bg-[#EBEBEB] text-[#111827] relative overflow-hidden">
             <SEO
                 title="Why Choose Us"
-                description="Discover why top brands trust Billford Advertising for premium transit and outdoor advertising in Thrissur. Captive audiences, HD displays, and strategic placement."
-                keywords="why choose billford, advertising agency thrissur, transit advertising, LED bus screens, outdoor advertising benefits"
+                description="Discover why top brands trust Hopeadsolutions Advertising for premium transit and outdoor advertising in Thrissur. Captive audiences, HD displays, and strategic placement."
+                keywords="why choose Hopeadsolutions, advertising agency thrissur, transit advertising, LED bus screens, outdoor advertising benefits"
                 ogType="website"
             />
 

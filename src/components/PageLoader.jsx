@@ -51,7 +51,7 @@ const PageLoader = ({ onComplete }) => {
                     >
                         <img
                             src={logo}
-                            alt="Billford Advertising"
+                            alt="Hopeadsolutions Advertising"
                             className="h-24 w-auto drop-shadow-[0_0_30px_rgba(255,138,0,0.4)]"
                         />
                         <motion.p

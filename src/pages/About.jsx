@@ -56,7 +56,7 @@ const IntroSection = () => {
                         <p>
                             At Hope Ad Solutions, our mission is crafted with passion, precision, and a touch of digital magic.
                             We transform everyday bus journeys into high-impact advertising opportunities with our
-                            eye-level 24-inch and 32-inch LED screens.
+                            eye-level  LED screens.
                         </p>
                         <p>
                             Serving businesses across Kerala, including Thrissur, we deliver targeted digital campaigns
@@ -70,7 +70,7 @@ const IntroSection = () => {
                 {/* Features Row */}
                 <div className="grid md:grid-cols-3 gap-6 mb-20">
                     {[
-                        { icon: Eye, title: "Eye-Level Maximum Visibility", desc: "Your ads are placed on 24-inch HD LED screens inside buses at direct eye-level, ensuring strong attention and high brand recall." },
+                        { icon: Eye, title: "Eye-Level Maximum Visibility", desc: "Your ads are placed on  HD LED screens inside buses at direct eye-level, ensuring strong attention and high brand recall." },
                         { icon: Target, title: "Strategic & Targeted Reach", desc: "Campaigns are carefully positioned across key routes in Kerala, including Thrissur, to reach a captive and relevant audience." },
                         { icon: Zap, title: "Customized High-Impact Campaigns", desc: "Every advertisement is tailored to your brand — delivering professional execution and memorable brand experiences." }
                     ].map((item, idx) => (
@@ -208,7 +208,7 @@ const About = () => {
 
             <SEO
                 title="About Us"
-                description="Learn more about Billford Advertising, our mission, our creative experts, and how we help businesses achieve digital growth."
+                description="Learn more about Hopeadsolutions Advertising, our mission, our creative experts, and how we help businesses achieve digital growth."
                 keywords="advertising team, marketing experts, our story, agency mission, creative growth"
                 ogType="website"
             />

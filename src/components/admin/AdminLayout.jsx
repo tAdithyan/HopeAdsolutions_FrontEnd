@@ -1,5 +1,5 @@
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
-import { LayoutDashboard, FileText, Tag, Home, Mail, LogOut, User as UserIcon } from "lucide-react";
+import { LayoutDashboard, FileText, Tag, Home, Mail, LogOut, User as UserIcon, Users } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 
 const AdminLayout = () => {
@@ -78,6 +78,16 @@ const AdminLayout = () => {
                     >
                         <Mail size={20} />
                         Contacts
+                    </Link>
+                    <Link
+                        to="/admin/clients"
+                        className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${isActive("/admin/clients")
+                            ? "bg-[#FF8A00] text-white shadow-lg shadow-orange-500/20 font-bold"
+                            : "text-gray-400 hover:bg-gray-800 hover:text-white"
+                            }`}
+                    >
+                        <Users size={20} />
+                        Clients
                     </Link>
                 </nav>
 

@@ -34,6 +34,7 @@ import Dashboard from "./pages/admin/Dashboard";
 import AdminBlogs from "./pages/admin/AdminBlogs";
 import AdminOffers from "./pages/admin/AdminOffers";
 import AdminContacts from "./pages/admin/AdminContacts";
+import AdminClients from "./pages/admin/AdminClients";
 
 // Context & Data
 import { DataProvider } from "./context/DataContext";
@@ -60,7 +61,7 @@ const Home = () => {
       <main className={`relative w-full min-h-screen bg-[#EBEBEB] transition-opacity duration-500 ${showLoader ? 'opacity-0' : 'opacity-100'}`}>
         <SEO
           title="Home"
-          description="Welcome to Billford Advertising. We provide premium billboards, digital marketing, and creative advertising solutions."
+          description="Welcome to Hopeadsolutions Advertising. We provide premium billboards, digital marketing, and creative advertising solutions."
           keywords="advertising agency, billboard advertising, digital marketing, outdoor advertising, creative ads, branding"
           ogType="website"
         />
@@ -91,7 +92,7 @@ const GlobalElements = ({ showLocationModal, onAcceptLocation, onCancelLocation 
   const location = useLocation();
 
   // Define routes where WhatsApp button SHOULD NOT appear
-  const hideOnRoutes = ["/admin", "/admin/login", "/admin/blogs", "/admin/offers", "/admin/contacts"];
+  const hideOnRoutes = ["/admin", "/admin/login", "/admin/blogs", "/admin/offers", "/admin/contacts", "/admin/clients"];
 
   // Also check if it's a 404 (any route not explicitly matched in hideOnRoutes and not a main route)
   const isMainRoute = ["/", "/about", "/services", "/blogs", "/blog", "/contact", "/why-choose-us", "/privacy-policy", "/terms-of-service", "/cookie-policy"].some(path =>
@@ -123,7 +124,7 @@ function App() {
       const response = await fetch(
         `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`,
         {
-          headers: { "User-Agent": "billford-advertising" },
+          headers: { "User-Agent": "Hopeadsolutions-advertising" },
         }
       );
       return await response.json();
@@ -189,6 +190,7 @@ function App() {
                   <Route path="blogs" element={<AdminBlogs />} />
                   <Route path="offers" element={<AdminOffers />} />
                   <Route path="contacts" element={<AdminContacts />} />
+                  <Route path="clients" element={<AdminClients />} />
                 </Route>
               </Route>
               <Route path="*" element={<NotFound />} />

@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 /* Prevent horizontal overflow */
-html, body {
+html,
+body {
   overflow-x: hidden;
   width: 100%;
   background-color: #EBEBEB;
@@ -26,12 +27,29 @@ html {
 }
 
 /* Specific text element transitions */
-h1, h2, h3, h4, h5, h6, p, span, a, button, label, input, textarea, select {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+a,
+button,
+label,
+input,
+textarea,
+select {
   transition: all 0.3s ease-in-out;
 }
 
 /* Hover transitions for interactive elements */
-button:hover, a:hover, input:hover, select:hover, textarea:hover {
+button:hover,
+a:hover,
+input:hover,
+select:hover,
+textarea:hover {
   transition: all 0.2s ease-in-out;
 }
 
@@ -40,6 +58,7 @@ button:hover, a:hover, input:hover, select:hover, textarea:hover {
   0% {
     transform: translateX(0%);
   }
+
   100% {
     transform: translateX(-100%);
   }
@@ -58,6 +77,7 @@ button:hover, a:hover, input:hover, select:hover, textarea:hover {
 .animate-marquee-slow {
   animation: marquee 30s linear infinite;
 }
+
 /* Change selected option background */
 select option {
   background-color: white;
