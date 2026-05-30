@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
 const SEO = ({ title, description, keywords, canonical, ogImage, ogType, twitterHandle }) => {
-    const siteName = "Billford Advertising";
+    const siteName = "Hopeadsolutions Advertising";
     const fullTitle = title ? `${title} | ${siteName}` : siteName;
     const defaultDescription = "Premium advertising and marketing solutions to grow your business. Billboards, digital marketing, and creative strategies.";
     const metaDescription = description || defaultDescription;
@@ -14,7 +14,7 @@ const SEO = ({ title, description, keywords, canonical, ogImage, ogType, twitter
             <title>{fullTitle}</title>
             <meta name='description' content={metaDescription} />
             {keywords && <meta name="keywords" content={keywords} />}
-            <meta name="author" content="Billford Advertising" />
+            <meta name="author" content="Hopeadsolutions Advertising" />
             <meta name="theme-color" content="#FF8A00" />
             {canonical && <link rel="canonical" href={canonical} />}
 

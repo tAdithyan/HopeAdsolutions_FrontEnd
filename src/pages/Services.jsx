@@ -4,6 +4,7 @@ import Header from "../components/header";
 import { Footer } from "../components/Footer";
 import { Link } from 'react-router-dom';
 import SEO from "../components/SEO";
+import image from "../assets/WhatsApp Image 2026-03-14 at 10.00.55 AM (1).jpeg"
 
 const Services = () => {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -47,7 +48,7 @@ const Services = () => {
                 <section className="pb-20 md:pb-28 container mx-auto px-6 max-w-7xl">
                     <div className="grid lg:grid-cols-2 gap-16 items-center">
                         {/* Text Content */}
-                        <div className="space-y-8 relative z-10">
+                        <div className="space-y-8 relative z-10 order-2 lg:order-1">
                             <div>
                                 <h2 className="font-['Oswald'] text-4xl md:text-6xl font-bold text-[#111827] leading-tight">
                                     CAPTURE THE <br />
@@ -65,7 +66,7 @@ const Services = () => {
                                 <br /><br />
                                 <strong>Transit Advertising in Buses</strong><br />
                                 Create unforgettable brand moments with eye-level engagement.
-                                We offer thoughtfully curated digital ad slots on high-definition 24-inch and 32-inch LED screens placed directly behind the driver’s seat. This ensures your message feels premium, meaningful, and impossible for passengers to miss throughout their entire journey.
+                                We offer thoughtfully curated digital ad slots on high-definition  LED screens placed directly behind the driver’s seat. This ensures your message feels premium, meaningful, and impossible for passengers to miss throughout their entire journey.
                                 <br /><br />
                                 <strong>Restaurant Advertising</strong><br />
                                 Perfect for localized reach during leisure and dining hours.
@@ -85,14 +86,14 @@ const Services = () => {
                         </div>
 
                         {/* Image */}
-                        <div className="relative group">
+                        <div className="relative group order-1 lg:order-2">
                             {/* Decorative blur backing */}
                             <div className="absolute -inset-4 bg-gradient-to-r from-[#FF8A00]/20 to-orange-100 blur-xl opacity-70 rounded-3xl" />
 
                             <img
-                                src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop"
+                                src={image}
                                 alt="Cameraman"
-                                className="relative z-10 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] w-full object-cover aspect-[4/3] group-hover:scale-[1.02] transition-transform duration-500"
+                                className="relative z-10 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] w-full h-auto group-hover:scale-[1.02] transition-transform duration-500"
                             />
                         </div>
                     </div>

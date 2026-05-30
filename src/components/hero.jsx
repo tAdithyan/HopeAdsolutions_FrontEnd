@@ -71,7 +71,7 @@ export default function Hero() {
       />
 
       {/* CONTENT */}
-      <div className="relative z-10 w-full mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32 md:pt-40 lg:pt-48 xl:pt-[12rem] 2xl:px-16 py-8 md:py-24 xl:py-32 h-full flex items-center">
+      <div className="relative z-10 w-full mx-auto px-4 sm:px-6 lg:px-8 pt-32 sm:pt-32 md:pt-40 lg:pt-48 xl:pt-[12rem] 2xl:px-16 py-8 md:py-24 xl:py-32 h-full flex items-center">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-12 items-center w-full max-w-7xl mx-auto">
 
           {/* LEFT TEXT */}
@@ -86,15 +86,14 @@ export default function Hero() {
                   duration: 0.8,
                   ease: [0.25, 0.46, 0.45, 0.94],
                 }}
-                className="relative p-6 md:p-0 drop-shadow-lg"
+                className="relative p-6 md:p-0 drop-shadow-lg order-2 md:order-1 text-center md:text-left"
               >
                 <h1
-                  className="
-                font-['Oswald'] text-4xl md:text-5xl lg:text-6xl font-bold text-[#111827] 
-                "
+                  style={{ fontSize: "clamp(1.75rem, 5vw, 3.25rem)" }}
+                  className="font-['Oswald'] font-black text-[#111827] leading-[0.95] uppercase tracking-tighter"
                 >
-                  {slides[index].headline} <br />
-                  <span className="font-serif italic text-[#FF8A00]">
+                  {slides[index].headline}
+                  <span className="block font-serif italic text-[#FF8A00] mt-3">
                     {slides[index].subline}
                   </span>
                 </h1>
@@ -118,9 +117,8 @@ export default function Hero() {
                 </h2>
 
                 <p
-                  className="
-                 text-lg text-gray-600 mb-8 leading-relaxed
-                "
+                  style={{ fontSize: "clamp(0.85rem, 1.1vw, 1rem)" }}
+                  className="text-gray-500 leading-relaxed font-medium mb-3"
                 >
                   {slides[index].description}
                 </p>
@@ -148,7 +146,7 @@ export default function Hero() {
                   duration: 0.8,
                   ease: [0.25, 0.46, 0.45, 0.94]
                 }}
-                className="relative "
+                className="relative order-1 md:order-2"
               >
                 <img
                   src={`${slides[index].image}`}

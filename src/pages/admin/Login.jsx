@@ -113,7 +113,7 @@ const Login = () => {
 
                 <div className="text-center mt-8">
                     <p className="text-sm text-gray-400 font-medium">
-                        &copy; 2024 Billford International. <br className="md:hidden" /> All Rights Reserved.
+                        &copy; 2026 Hopeadsolutions International. <br className="md:hidden" /> All Rights Reserved.
                     </p>
                 </div>
             </motion.div>

@@ -102,7 +102,7 @@ const Dashboard = () => {
 
 
             </div>
-            <a href="https://www.seobility.net/en/seocheck/check?url=https%3A%2F%2Fcompany-website-sand-nine.vercel.app%2F"><img src="https://app.seobility.net/widget/widget.png?url=https%3A%2F%2Fcompany-website-sand-nine.vercel.app%2F" alt="Seobility Score for company-website-sand-nine.vercel.app" /></a>
+          
         </div>
     );
 };

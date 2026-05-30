@@ -12,7 +12,7 @@ export default function WhyChooseSection() {
     {
       icon: TruckIcon,
       title: "Premium Transit Advertising Experience",
-      description: "Reach thousands of commuters daily through our high-definition 24-inch and 32-inch LED network.",
+      description: "Reach thousands of commuters daily through our high-definition  LED network.",
     },
     {
       icon: EyeIcon,
