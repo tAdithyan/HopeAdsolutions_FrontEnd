@@ -182,7 +182,7 @@ export function Contact() {
               },
               {
                 title: "Call Us",
-                text: "+91 7510957477",
+                text: "+91 8592997477",
               },
               {
                 title: "Email",
@@ -200,11 +200,11 @@ export function Contact() {
 
             {/* MAP */}
             <div className="overflow-hidden rounded-2xl border border-slate-200 shadow-md flex-1 min-h-[280px]">
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3920.1864910477548!2d75.99510990000002!3d10.7200948!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba7bf9f754586ed%3A0x17e54a3e91ad1bc6!2sHope%20Ad%20Solutions%20by%20Tint%20Productions!5e0!3m2!1sen!2sin!4v1773505361959!5m2!1sen!2sin" 
-                className="w-full h-full border-0" 
-                allowFullScreen="" 
-                loading="lazy" 
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3920.1864910477548!2d75.99510990000002!3d10.7200948!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba7bf9f754586ed%3A0x17e54a3e91ad1bc6!2sHope%20Ad%20Solutions%20by%20Tint%20Productions!5e0!3m2!1sen!2sin!4v1773505361959!5m2!1sen!2sin"
+                className="w-full h-full border-0"
+                allowFullScreen=""
+                loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
             </div>
