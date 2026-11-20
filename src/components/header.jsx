@@ -56,6 +56,7 @@ export default function Header() {
                 { name: "Services", path: "/services" },
                 { name: "Why Choose Us", path: "/why-choose-us" },
                 { name: "Blogs", path: "/blogs" },
+                { name: "Gallery", path: "/gallery" },
                 { name: "Contact Us", path: "/contact" },
               ].map((item) => (
                 <Link
@@ -130,6 +131,7 @@ export default function Header() {
             { name: "Services", path: "/services" },
             { name: "Why Choose Us", path: "/why-choose-us" },
             { name: "Blogs", path: "/blogs" },
+            { name: "Gallery", path: "/gallery" },
             { name: "Contact Us", path: "/contact" },
           ].map((item) => (
             <Link

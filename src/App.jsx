@@ -17,6 +17,8 @@ import ScrollToTop from "./components/ScrollToTop";
 import WhatsAppButton from "./components/WhatsAppButton";
 import SEO from "./components/SEO";
 import PageLoader from "./components/PageLoader";
+import GalleryPage from "./pages/Gallery";
+import AdminGalleryPage from "./components/admin/AdminGalleryPage";
 
 // Pages
 import AboutPage from "./pages/About";
@@ -182,6 +184,7 @@ function App() {
               <Route path="/why-choose-us" element={<WhyChooseUsPage />} />
               <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
               <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+              <Route path="/gallery" element={<GalleryPage />} />
               <Route path="/cookie-policy" element={<CookiePolicyPage />} />
               <Route path="/admin/login" element={<Login />} />
               <Route path="/admin" element={<ProtectedRoute />}>
@@ -191,6 +194,7 @@ function App() {
                   <Route path="offers" element={<AdminOffers />} />
                   <Route path="contacts" element={<AdminContacts />} />
                   <Route path="clients" element={<AdminClients />} />
+                  <Route path="gallery" element={<AdminGalleryPage />} />
                 </Route>
               </Route>
               <Route path="*" element={<NotFound />} />
