@@ -29,18 +29,18 @@ const GalleryPage = () => {
     const [activeCategory, setActiveCategory] = useState("All");
     const [lightboxItem, setLightboxItem] = useState(null);
 
-    const fetchMedia = async () => {
-        try {
-            setLoading(true);
-            setError("");
-            const { data } = await axiosInstance.get("/media");
-            setItems(data);
-        } catch (err) {
-            setError(err.response?.data?.message || "Could not load the gallery. Please try again.");
-        } finally {
-            setLoading(false);
-        }
-    };
+const fetchMedia = async () => {
+    try {
+        setLoading(true);
+        setError("");
+        const { data } = await axiosInstance.get("/media");
+        setItems(Array.isArray(data.data) ? data.data : []);
+    } catch (err) {
+        setError(err.response?.data?.message || "Could not load the gallery. Please try again.");
+    } finally {
+        setLoading(false);
+    }
+};
 
     useEffect(() => {
         fetchMedia();

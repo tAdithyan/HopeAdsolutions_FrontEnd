@@ -81,18 +81,18 @@ const AdminGalleryPage = () => {
      FETCH MEDIA
   ========================================================= */
 
-  const fetchMedia = async () => {
-    try {
-      setLoading(true);
-      setError("");
-      const { data } = await axiosInstance.get("/media");
-      setMedia(data);
-    } catch (err) {
-      setError(err.response?.data?.message || "Failed to load media.");
-    } finally {
-      setLoading(false);
-    }
-  };
+ const fetchMedia = async () => {
+  try {
+    setLoading(true);
+    setError("");
+    const { data } = await axiosInstance.get("/media");
+    setMedia(Array.isArray(data.data) ? data.data : []);
+  } catch (err) {
+    setError(err.response?.data?.message || "Failed to load media.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   useEffect(() => {
     fetchMedia();
