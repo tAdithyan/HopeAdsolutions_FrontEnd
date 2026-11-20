@@ -1,107 +1,69 @@
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ZoomIn, Filter } from "lucide-react";
+import { X, ZoomIn, Filter, Play, Loader2 } from "lucide-react";
 import Header from "../components/header";
 import { Footer } from "../components/Footer";
 import SEO from "../components/SEO";
+import axiosInstance from "../config/axios"; // <-- adjust to where your instance lives
 
-const categories = ["All", "Transit Ads", "Restaurant", "Outdoor", "Events"];
+/* Cloudinary video -> still frame used as poster (first frame as JPG) */
+const getVideoPoster = (url) =>
+    url && url.includes("/video/upload/")
+        ? url.replace("/video/upload/", "/video/upload/so_0/").replace(/\.[^/.]+$/, ".jpg")
+        : undefined;
 
-const galleryItems = [
-    {
-        id: 1,
-        category: "Transit Ads",
-        src: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=2069&auto=format&fit=crop",
-        title: "City Bus LED Campaign",
-        span: "row-span-2",
-    },
-    {
-        id: 2,
-        category: "Outdoor",
-        src: "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?q=80&w=2069&auto=format&fit=crop",
-        title: "Digital Billboard Night",
-        span: "",
-    },
-    {
-        id: 3,
-        category: "Restaurant",
-        src: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2070&auto=format&fit=crop",
-        title: "Restaurant Digital Display",
-        span: "",
-    },
-    {
-        id: 4,
-        category: "Events",
-        src: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=2070&auto=format&fit=crop",
-        title: "Brand Activation Event",
-        span: "row-span-2",
-    },
-    {
-        id: 5,
-        category: "Transit Ads",
-        src: "https://images.unsplash.com/photo-1556742031-c6961e8560b0?q=80&w=2070&auto=format&fit=crop",
-        title: "In-Bus Screen Network",
-        span: "",
-    },
-    {
-        id: 6,
-        category: "Outdoor",
-        src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop",
-        title: "Scenic Outdoor Placement",
-        span: "",
-    },
-    {
-        id: 7,
-        category: "Restaurant",
-        src: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=2074&auto=format&fit=crop",
-        title: "Dining Area Screen Ad",
-        span: "row-span-2",
-    },
-    {
-        id: 8,
-        category: "Transit Ads",
-        src: "https://images.unsplash.com/photo-1519501025264-65ba15a82390?q=80&w=1964&auto=format&fit=crop",
-        title: "Metro Route Campaign",
-        span: "",
-    },
-    {
-        id: 9,
-        category: "Events",
-        src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop",
-        title: "Exhibition Branding",
-        span: "",
-    },
-    {
-        id: 10,
-        category: "Outdoor",
-        src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2070&auto=format&fit=crop",
-        title: "Roadside LED Panel",
-        span: "",
-    },
-    {
-        id: 11,
-        category: "Transit Ads",
-        src: "https://images.unsplash.com/photo-1546961342-ea5f60a193b4?q=80&w=1974&auto=format&fit=crop",
-        title: "Bus Route Wrap",
-        span: "row-span-2",
-    },
-    {
-        id: 12,
-        category: "Events",
-        src: "https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?q=80&w=2070&auto=format&fit=crop",
-        title: "Corporate Event Display",
-        span: "",
-    },
-];
+const playPreview = (e) => {
+    const p = e.currentTarget.play();
+    if (p && p.catch) p.catch(() => { });
+};
+
+const stopPreview = (e) => {
+    e.currentTarget.pause();
+    e.currentTarget.currentTime = 0;
+};
 
 const GalleryPage = () => {
+    const [items, setItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
     const [activeCategory, setActiveCategory] = useState("All");
     const [lightboxItem, setLightboxItem] = useState(null);
 
+    const fetchMedia = async () => {
+        try {
+            setLoading(true);
+            setError("");
+            const { data } = await axiosInstance.get("/media");
+            setItems(data);
+        } catch (err) {
+            setError(err.response?.data?.message || "Could not load the gallery. Please try again.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchMedia();
+    }, []);
+
+    /* Close lightbox with Escape */
+    useEffect(() => {
+        if (!lightboxItem) return;
+        const onKey = (e) => e.key === "Escape" && setLightboxItem(null);
+        window.addEventListener("keydown", onKey);
+        return () => window.removeEventListener("keydown", onKey);
+    }, [lightboxItem]);
+
+    /* Filter tabs come from the categories that actually have media */
+    const categories = useMemo(
+        () => ["All", ...Array.from(new Set(items.map((i) => i.category).filter(Boolean)))],
+        [items]
+    );
+
     const filtered =
         activeCategory === "All"
-            ? galleryItems
-            : galleryItems.filter((item) => item.category === activeCategory);
+            ? items
+            : items.filter((item) => item.category === activeCategory);
 
     return (
         <div className="min-h-screen bg-[#EBEBEB] text-[#111827] relative overflow-hidden">
@@ -154,76 +116,122 @@ const GalleryPage = () => {
                 </section>
 
                 {/* Filter Bar */}
-                <section className="pb-10 px-6">
-                    <div className="max-w-7xl mx-auto">
-                        <div className="flex items-center gap-3 flex-wrap justify-center">
-                            <Filter size={16} className="text-[#FF8A00]" />
-                            {categories.map((cat) => (
-                                <button
-                                    key={cat}
-                                    onClick={() => setActiveCategory(cat)}
-                                    className={`px-5 py-2 rounded-full text-sm font-bold uppercase tracking-wider transition-all duration-300 ${activeCategory === cat
+                {!loading && !error && items.length > 0 && (
+                    <section className="pb-10 px-6">
+                        <div className="max-w-7xl mx-auto">
+                            <div className="flex items-center gap-3 flex-wrap justify-center">
+                                <Filter size={16} className="text-[#FF8A00]" />
+                                {categories.map((cat) => (
+                                    <button
+                                        key={cat}
+                                        onClick={() => setActiveCategory(cat)}
+                                        className={`px-5 py-2 rounded-full text-sm font-bold uppercase tracking-wider transition-all duration-300 ${activeCategory === cat
                                             ? "bg-[#FF8A00] text-white shadow-[0_8px_20px_rgba(255,138,0,0.35)]"
                                             : "bg-white text-gray-600 border border-gray-200 hover:border-[#FF8A00] hover:text-[#FF8A00]"
-                                        }`}
-                                >
-                                    {cat}
-                                </button>
-                            ))}
+                                            }`}
+                                    >
+                                        {cat}
+                                    </button>
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
+                )}
 
                 {/* Masonry Grid */}
                 <section className="pb-24 px-6">
                     <div className="max-w-7xl mx-auto">
-                        <motion.div
-                            layout
-                            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-[250px]"
-                        >
-                            <AnimatePresence>
-                                {filtered.map((item) => (
-                                    <motion.div
-                                        key={item.id}
-                                        layout
-                                        initial={{ opacity: 0, scale: 0.95 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        exit={{ opacity: 0, scale: 0.95 }}
-                                        transition={{ duration: 0.35 }}
-                                        className={`group relative rounded-3xl overflow-hidden cursor-pointer shadow-sm hover:shadow-[0_20px_50px_rgba(0,0,0,0.15)] transition-shadow duration-500 ${item.span}`}
-                                        onClick={() => setLightboxItem(item)}
-                                    >
-                                        <img
-                                            src={item.src}
-                                            alt={item.title}
-                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                                        />
-                                        {/* Overlay */}
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex flex-col justify-end p-6">
-                                            <span className="text-xs font-bold text-[#FF8A00] uppercase tracking-widest mb-1">
-                                                {item.category}
-                                            </span>
-                                            <h3 className="font-['Oswald'] text-xl font-bold text-white">
-                                                {item.title}
-                                            </h3>
-                                        </div>
-                                        {/* Zoom Icon */}
-                                        <div className="absolute top-4 right-4 w-9 h-9 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                            <ZoomIn size={16} className="text-white" />
-                                        </div>
-                                        {/* Category badge */}
-                                        <div className="absolute top-4 left-4 px-3 py-1 bg-[#FF8A00] text-white text-xs font-bold rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                            {item.category}
-                                        </div>
-                                    </motion.div>
-                                ))}
-                            </AnimatePresence>
-                        </motion.div>
-
-                        {filtered.length === 0 && (
-                            <div className="text-center py-24 text-gray-400 font-bold uppercase tracking-widest">
-                                No items in this category yet.
+                        {loading ? (
+                            <div className="flex justify-center py-24">
+                                <Loader2 size={32} className="animate-spin text-[#FF8A00]" />
                             </div>
+                        ) : error ? (
+                            <div className="text-center py-24">
+                                <p className="text-gray-500 font-bold mb-4">{error}</p>
+                                <button
+                                    onClick={fetchMedia}
+                                    className="px-6 py-2 bg-[#FF8A00] text-white rounded-full text-sm font-bold uppercase tracking-wider hover:bg-[#ff9f33] transition-colors"
+                                >
+                                    Try again
+                                </button>
+                            </div>
+                        ) : (
+                            <>
+                                <motion.div
+                                    layout
+                                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-[250px]"
+                                >
+                                    <AnimatePresence>
+                                        {filtered.map((item, index) => (
+                                            <motion.div
+                                                key={item._id}
+                                                layout
+                                                initial={{ opacity: 0, scale: 0.95 }}
+                                                animate={{ opacity: 1, scale: 1 }}
+                                                exit={{ opacity: 0, scale: 0.95 }}
+                                                transition={{ duration: 0.35 }}
+                                                className={`group relative rounded-3xl overflow-hidden cursor-pointer bg-gray-200 shadow-sm hover:shadow-[0_20px_50px_rgba(0,0,0,0.15)] transition-shadow duration-500 ${index % 3 === 0 ? "row-span-2" : ""
+                                                    }`}
+                                                onClick={() => setLightboxItem(item)}
+                                            >
+                                                {item.type === "video" ? (
+                                                    <video
+                                                        src={item.url}
+                                                        poster={getVideoPoster(item.url)}
+                                                        muted
+                                                        loop
+                                                        playsInline
+                                                        preload="none"
+                                                        onMouseEnter={playPreview}
+                                                        onMouseLeave={stopPreview}
+                                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                                    />
+                                                ) : (
+                                                    <img
+                                                        src={item.url}
+                                                        alt={item.title}
+                                                        loading="lazy"
+                                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                                    />
+                                                )}
+
+                                                {/* Video indicator */}
+                                                {item.type === "video" && (
+                                                    <div className="absolute bottom-4 right-4 w-9 h-9 bg-white/90 rounded-full flex items-center justify-center group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
+                                                        <Play size={14} className="ml-0.5 text-[#111827]" fill="currentColor" />
+                                                    </div>
+                                                )}
+
+                                                {/* Overlay */}
+                                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex flex-col justify-end p-6 pointer-events-none">
+                                                    <span className="text-xs font-bold text-[#FF8A00] uppercase tracking-widest mb-1">
+                                                        {item.category}
+                                                    </span>
+                                                    <h3 className="font-['Oswald'] text-xl font-bold text-white">
+                                                        {item.title}
+                                                    </h3>
+                                                </div>
+
+                                                {/* Zoom Icon */}
+                                                <div className="absolute top-4 right-4 w-9 h-9 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                                                    <ZoomIn size={16} className="text-white" />
+                                                </div>
+
+                                                {/* Category badge */}
+                                                <div className="absolute top-4 left-4 px-3 py-1 bg-[#FF8A00] text-white text-xs font-bold rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                                                    {item.category}
+                                                </div>
+                                            </motion.div>
+                                        ))}
+                                    </AnimatePresence>
+                                </motion.div>
+
+                                {filtered.length === 0 && (
+                                    <div className="text-center py-24 text-gray-400 font-bold uppercase tracking-widest">
+                                        No items in this category yet.
+                                    </div>
+                                )}
+                            </>
                         )}
                     </div>
                 </section>
@@ -276,11 +284,23 @@ const GalleryPage = () => {
                             >
                                 <X size={18} />
                             </button>
-                            <img
-                                src={lightboxItem.src}
-                                alt={lightboxItem.title}
-                                className="w-full rounded-2xl shadow-2xl max-h-[80vh] object-contain"
-                            />
+
+                            {lightboxItem.type === "video" ? (
+                                <video
+                                    src={lightboxItem.url}
+                                    controls
+                                    autoPlay
+                                    playsInline
+                                    className="w-full rounded-2xl shadow-2xl max-h-[80vh] bg-black"
+                                />
+                            ) : (
+                                <img
+                                    src={lightboxItem.url}
+                                    alt={lightboxItem.title}
+                                    className="w-full rounded-2xl shadow-2xl max-h-[80vh] object-contain"
+                                />
+                            )}
+
                             <div className="mt-4 text-center">
                                 <span className="text-xs font-bold text-[#FF8A00] uppercase tracking-widest">
                                     {lightboxItem.category}
@@ -288,6 +308,11 @@ const GalleryPage = () => {
                                 <p className="font-['Oswald'] text-2xl font-bold text-white mt-1">
                                     {lightboxItem.title}
                                 </p>
+                                {lightboxItem.description && (
+                                    <p className="mt-2 text-sm text-gray-300 max-w-2xl mx-auto">
+                                        {lightboxItem.description}
+                                    </p>
+                                )}
                             </div>
                         </motion.div>
                     </motion.div>

@@ -5,6 +5,7 @@ import { getClients } from "../data/clients";
 export default function Clients() {
     const [clients, setClients] = useState([]);
     const [loading, setLoading] = useState(true);
+   const scrollDuration = 8;
 
     useEffect(() => {
         const fetchClients = async () => {
@@ -50,7 +51,9 @@ export default function Clients() {
                             x: ["0%", "-50%"],
                         }}
                         transition={{
-                            duration: 20 + clients.length * 2,
+                            // duration: scrollDuration + clients.length * 2,
+                            duration:6,
+
                             ease: "linear",
                             repeat: Infinity,
                         }}
