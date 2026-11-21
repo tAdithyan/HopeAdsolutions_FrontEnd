@@ -5,8 +5,11 @@ import { Lock, User, ArrowRight, AlertCircle } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 
 const Login = () => {
-    const [username, setUsername] = useState(import.meta.env.VITE_ADMIN_USERNAME || "");
-    const [password, setPassword] = useState(import.meta.env.VITE_ADMIN_PASSWORD || "");
+    // const [username, setUsername] = useState(import.meta.env.VITE_ADMIN_USERNAME || "");
+    // const [password, setPassword] = useState(import.meta.env.VITE_ADMIN_PASSWORD || "");
+
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
