@@ -13,8 +13,14 @@ import { fetchBlogs } from "../data/blogs";
 import Loading from "../components/common/Loading";
 
 const BlogCard = ({ blog, featured = false }) => (
-    <Link to={`/blog/${blog._id}`} className="block h-full">
-        <motion.div
+<Link
+    to={`/blog/${blog.slug}`}
+    state={{ blogId: blog._id }}
+    className="block h-full"
+>
+    
+    
+            <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
