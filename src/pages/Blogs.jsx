@@ -30,7 +30,7 @@ const createSlug = (title) => {
 
 const BlogCard = ({ blog, featured = false }) => (
     <Link
-        to={`/blog/${createSlug(blog.title)}`}
+        to={`/blog/${createSlug(blog.title)}?blogid=${blog._id}`}
         state={{ blogId: blog._id }}
         className="block h-full"
     >
