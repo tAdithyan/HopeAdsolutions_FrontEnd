@@ -5,23 +5,19 @@ const testimonials = [
   {
     quote:
       "BoldAds transformed our brand visibility. Their billboard campaign generated more leads in 3 months than we had in the entire previous year.",
-    author: "Sarah Chen",
-    role: "CMO, TechVenture Inc.",
-    image: "https://i.pinimg.com/736x/07/33/ba/0733ba760b29378474dea0fdbcb97107.jpg",
+  
+   
   },
   {
     quote:
       "The creativity and strategic thinking they bring to every campaign is unmatched. They don't just advertise—they create cultural moments.",
-    author: "Marcus Johnson",
-    role: "Brand Director, Luxe Fashion",
-    image: "https://i.pinimg.com/736x/02/00/90/020090c506a4e9f4c6fa0052d6dfd0c1.jpg",
+  
+   
   },
   {
     quote:
       "Our ROI has increased by 340% since partnering with BoldAds. Their data-driven approach combined with bold creativity is a game-changer.",
-    author: "Emily Rodriguez",
-    role: "CEO, Metro Retail",
-    image: "https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg",
+   
   },
 ];
 
@@ -79,47 +75,6 @@ const Testimonials = () => {
               "{testimonials[currentIndex].quote}"
             </blockquote>
 
-            {/* Footer */}
-            <div className="flex flex-wrap items-center justify-between gap-6">
-              <div className="flex items-center gap-4">
-                {/* Person Photo */}
-                <div className="relative">
-                  <img
-                    src={testimonials[currentIndex].image}
-                    alt={testimonials[currentIndex].author}
-                    className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover border-4 border-white shadow-lg"
-                  />
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#FF8A00]/20 to-transparent"></div>
-                </div>
-                
-                {/* Person Info */}
-                <div>
-                  <p className="text-xl font-bold text-[#111827]">
-                    {testimonials[currentIndex].author}
-                  </p>
-                  <p className="text-[#6B7280]">
-                    {testimonials[currentIndex].role}
-                  </p>
-                </div>
-              </div>
-
-              {/* Navigation */}
-              <div className="flex items-center gap-4">
-                <button
-                  onClick={prev}
-                  className="w-12 h-12 rounded-full border border-[#E5E7EB] flex items-center justify-center hover:border-[#FF8A00] hover:bg-[#FF8A00]/10 transition"
-                >
-                  <ChevronLeft className="w-5 h-5 text-[#111827]" />
-                </button>
-
-                <button
-                  onClick={next}
-                  className="w-12 h-12 rounded-full bg-[#FF8A00] flex items-center justify-center hover:opacity-90 transition shadow-[0_0_30px_rgba(255,138,0,0.45)]"
-                >
-                  <ChevronRight className="w-5 h-5 text-white" />
-                </button>
-              </div>
-            </div>
 
             {/* Dots */}
             <div className="flex justify-center gap-2 mt-8">
