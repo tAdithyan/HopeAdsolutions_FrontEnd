@@ -179,7 +179,7 @@ function App() {
               <Route path="/about" element={<AboutPage />} />
               <Route path="/services" element={<ServicesPage />} />
               <Route path="/blogs" element={<BlogsPage />} />
-              <Route path="/blog/:id" element={<SingleBlogPage />} />
+              <Route path="/blog/:slug" element={<SingleBlogPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/why-choose-us" element={<WhyChooseUsPage />} />
               <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
