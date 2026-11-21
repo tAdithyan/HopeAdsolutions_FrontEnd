@@ -8,7 +8,6 @@ import { getOffers } from "../data/offers";
 const OfferSection = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [offers, setOffers] = useState([]);
-    console.log(offers);
     useEffect(() => {
         const fetchOffers = async () => {
             const data = await getOffers();
