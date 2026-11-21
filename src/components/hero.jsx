@@ -28,12 +28,10 @@ export default function Hero() {
   useEffect(() => {
     const fetchOffers = async () => {
       const data = await getOffers();
-      console.log("dasdasd", data);
       setSlides(data.data);
     };
     fetchOffers();
   }, []);
-  console.log(slides);
 
   const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
